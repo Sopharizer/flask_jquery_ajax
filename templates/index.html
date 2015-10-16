@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Flask jQuery ajax</title>
+    </head>
+    <body>
+        <p>
+            <input type="button" id="send" value="通信" />
+        </p>
+        <span id="result"></span>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(function() {
+    $('#send').click(function() {
+
+        $('#result').text("");
+
+        $.ajax({
+            type: "POST",
+            url: '/post',
+            dataType: 'json',
+            processData : false,
+            contentType : false,
+            success: function(result) {
+                console.dir(result);
+                $('#result').text(result.message);
+            },
+            error: function() {
+                console.dir("error");
+            }
+        });
+    });
+});
+</script>
+    </body>
+</html>
